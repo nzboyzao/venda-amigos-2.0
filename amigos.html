@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós | GameBye</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="fotos/favicon site.png" type="image/x-icon">
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #5bc95d; /* Verde GameBye */
+            --secondary-color: #9d6b53; /* Marrom madeira */
+            --accent-color: #4caf50; /* Verde */
+            --dark-bg: #121212; /* Fundo escuro */
+            --darker-bg: #0a0a0a;
+            --light-gray: #f5f5f5;
+            --medium-gray: #b0b0b0;
+            --dark-gray: #333;
+            --card-bg: #1e1e1e;
+            --border-color: #2a2a2a;
+            --shadow-color: rgba(91, 201, 93, 0.2);
+            --transition: all 0.3s ease;
+            --premium-color: #ffd700; /* Dourado para premium */
+            --elite-color: #64b5f6; /* Azul para elite */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 80px; /* Espaço para o header fixo */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #4ba84d;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(91, 201, 93, 0.1);
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--medium-gray);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+            background-color: rgba(91, 201, 93, 0.1);
+        }
+
+        nav ul li a.active {
+            color: var(--primary-color);
+            background-color: rgba(91, 201, 93, 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: var(--darker-bg);
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--medium-gray);
+        }
+
+        .breadcrumb-content a {
+            color: var(--medium-gray);
+            transition: var(--transition);
+        }
+
+        .breadcrumb-content a:hover {
+            color: var(--primary-color);
+        }
+
+        .breadcrumb-content i {
+            font-size: 0.8rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            margin-bottom: 30px;
+        }
+
+        /* Seção Nossa História */
+        .story-section {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+        }
+
+        .story-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .story-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .story-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .story-content h2 {
+            margin-bottom: 20px;
+        }
+
+        /* Seção de Valores */
+        .values-section {
+            background-color: var(--darker-bg);
+            border-radius: 15px;
+            padding: 80px 0;
+            margin-bottom: 60px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(91, 201, 93, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .value-card h3 {
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        /* Seção de Equipe */
+        .team-section {
+            margin-bottom: 80px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .team-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-image {
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-card:hover .team-image img {
+            transform: scale(1.05);
+        }
+
+        .team-content {
+            padding: 30px;
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .team-role {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .team-social a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(91, 201, 93, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .team-social a:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* Seção de Estatísticas */
+        .stats-section {
+            background: linear-gradient(rgba(91, 201, 93, 0.1), rgba(91, 201, 93, 0.05));
+            border-radius: 15px;
+            padding: 80px 0;
+            margin-bottom: 80px;
+            border: 1px solid rgba(91, 201, 93, 0.2);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: var(--medium-gray);
+            font-size: 1.1rem;
+        }
+
+        /* Seção CTA */
+        .cta-section {
+            background: linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1534423861386-85a16f5d13fd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            padding: 100px 0;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .cta-content h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: var(--light-gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 50px 0 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--primary-color);
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: var(--medium-gray);
+            transition: var(--transition);
+            display: inline-block;
+            padding: 5px 0;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .story-section {
+                flex-direction: column;
+            }
+            
+            .story-image, .story-content {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--darker-bg);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            nav ul.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            
+            body {
+                padding-top: 70px;
+            }
+            
+            .hero-section {
+                padding: 60px 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .values-grid,
+            .team-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-card,
+            .value-card {
+                padding: 25px 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+        
+        .delay-5 {
+            animation-delay: 1s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="tela-inicio.html" class="logo">
+                <i class="fas fa-gamepad"></i>
+                Game<span>Bye</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="tela-inicio.html">Início</a></li>
+                    <li><a href="tela-inicio.html#games">Jogos</a></li>
+                    <li><a href="como-funciona.html">Como funciona</a></li>
+                    <li><a href="tela-inicio.html">Amigos</a></li>
+                    <li><a href="#" class="active">Sobre nós</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="tela-inicio.html#games" class="btn btn-primary btn-small">Ver Jogos</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container breadcrumb-content">
+            <a href="tela-inicio.html">Início</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Sobre nós</span>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section fade-in">
+            <div class="hero-content">
+                <h1>Conectando Gamers, Criando Histórias</h1>
+                <p>Somos mais que uma plataforma - somos uma comunidade apaixonada por games e pelas conexões que eles criam. Conheça a equipe por trás do GameBye.</p>
+                <a href="#team" class="btn btn-primary">Conheça nossa equipe</a>
+            </div>
+        </section>
+
+        <!-- Nossa História -->
+        <section class="story-section fade-in">
+            <div class="story-image">
+                <img src="fotos/meus-amigos.png" alt="Equipe GameBye trabalhando">
+            </div>
+            <div class="story-content">
+                <h2>Nossa História</h2>
+                <p>Sou o smoke/bye mmr. Conheci o okaida com uns 12 anos, faz tempo pra caralho, nessa época o mlk nem pai era kkkkkkk.
+Hoje eu tô com 17 quase 18 e o desgraçado já tá com duas filhas, pqp, o tempo passa rápido demais.
+
+Nós já jogamos sea, gta, r6, slk, história pra caralho. Quem lembra de nós afundando os templários, matando o gay do targarey kkkkkk, bons tempos pra porra.
+
+Depois de um tempo cada um foi pro seu lado, mas hoje em dia nós se encontrou de novo, e no meio disso apareceu a piranha do hard.
+O cara é engraçado pra caralho, vive me cativando, enche o saco às vezes, mas nós releva.
+
+Do hard nem tem muito o que falar porque conheço ele faz pouco tempo, mas o mlk é zica, já deu pra ver.
+
+E outra coisa: o bla é muito chato kkkkkkk, insuportável, mas faz parte do grupo.
+
+É isso, essa é a história do grupo, simples, caótica e verdadeira. <strong>nunca mais deixar ninguém jogar sozinho</strong>. Acreditamos que os melhores momentos nos games acontecem quando compartilhados, e estamos aqui para garantir que você sempre tenha com quem compartilhar suas aventuras digitais.</p>
+            </div>
+        </section>
+
+        <!-- Nossos Valores -->
+        <section class="values-section fade-in delay-1">
+            <div class="container">
+                <h2 class="text-center">Nossos Valores</h2>
+                <p class="text-center" style="max-width: 600px; margin: 0 auto 50px;">Os princípios que guiam cada decisão que tomamos</p>
+                
+                <div class="values-grid">
+                    <!-- Valor 1 -->
+                    <div class="value-card fade-in">
+                        <div class="value-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Comunidade em Primeiro Lugar</h3>
+                        <p>Criamos conexões genuínas entre gamers. Aqui, todo mundo é bem-vindo, do casual ao hardcore.</p>
+                    </div>
+                    
+                    <!-- Valor 2 -->
+                    <div class="value-card fade-in delay-1">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Segurança e Confiança</h3>
+                        <p>Verificação rigorosa de todos os gamers e sistema de avaliações transparente garantem sua tranquilidade.</p>
+                    </div>
+                    
+                    <!-- Valor 3 -->
+                    <div class="value-card fade-in delay-2">
+                        <div class="value-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Paixão por Games</h3>
+                        <p>Somos gamers antes de tudo. Entendemos suas necessidades porque compartilhamos a mesma paixão.</p>
+                    </div>
+                    
+                    <!-- Valor 4 -->
+                    <div class="value-card fade-in delay-3">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Experiências Memoráveis</h3>
+                        <p>Nosso objetivo não é apenas conectar gamers, mas criar momentos que você vai querer reviver.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nossa Equipe -->
+        <section class="team-section fade-in delay-2" id="team">
+            <div class="container">
+                <h2 class="text-center">Conheça Nossa Equipe</h2>
+                <p class="text-center" style="max-width: 600px; margin: 0 auto 50px;">Os gamers e desenvolvedores por trás da magia do GameBye</p>
+                
+                <div class="team-grid">
+                    <!-- Fundador 1 -->
+                    <div class="team-card fade-in">
+                        <div class="team-image">
+                            <img src="fotos/smoke.jpg" alt="Alex " onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">Alex "Smoke"</h3>
+                            <span class="team-role">CEO & Fundador</span>
+                            <p>Com mais de 10.000 horas em diversos games, Alex transformou sua paixão em negócio. Especialista em PVP e estratégia, ele garante que a experiência do GameBye seja sempre épica.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-discord"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Fundador 2 -->
+                    <div class="team-card fade-in delay-1">
+                        <div class="team-image">
+                            <img src="fotos/bye.jpg" alt="Maria Silva" onerror="this.src='https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">Maria "ByeMMR" Silva</h3>
+                            <span class="team-role">CTO & Co-fundadora</span>
+                            <p>Desenvolvedora full-stack e gamer hardcore, Maria construiu a plataforma do zero. Quando não está codando, está dominando ranked matches ou organizando torneios comunitários.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Community Manager -->
+                    <div class="team-card fade-in delay-2">
+                        <div class="team-image">
+                            <img src="fotos/okaida.jpg" alt="Carlos " onerror="this.src='https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">Carlos "Okaida" </h3>
+                            <span class="team-role">Community Manager</span>
+                            <p>O coração da nossa comunidade. Carlos garante que todos se sintam acolhidos e organiza eventos semanais. Especialista em jogos casuais e sempre com uma história engraçada para contar.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-discord"></i></a>
+                                <a href="#"><i class="fab fa-twitch"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Head of Gaming -->
+                    <div class="team-card fade-in delay-3">
+                        <div class="team-image">
+                            <img src="fotos/hard.jpg" alt="Roberto " onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        </div>
+                        <div class="team-content">
+                            <h3 class="team-name">Roberto "Hard" </h3>
+                            <span class="team-role">Head of Gaming Relations</span>
+                            <p>Com background em e-sports profissional, Roberto recruta e treina nossos gamers. Ele garante que cada amigo do GameBye ofereça a melhor experiência possível para você.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                                <a href="#"><i class="fab fa-discord"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estatísticas -->
+        <section class="stats-section fade-in delay-3">
+            <div class="container">
+                <h2 class="text-center">GameBye em Números</h2>
+                <p class="text-center" style="max-width: 600px; margin: 0 auto 50px;">O impacto da nossa comunidade em números</p>
+                
+                <div class="stats-grid">
+                    <!-- Estatística 1 -->
+                    <div class="stat-item fade-in">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Gamers Especializados</div>
+                    </div>
+                    
+                    <!-- Estatística 2 -->
+                    <div class="stat-item fade-in delay-1">
+                        <div class="stat-number">50.000+</div>
+                        <div class="stat-label">Horas Jogadas</div>
+                    </div>
+                    
+                    <!-- Estatística 3 -->
+                    <div class="stat-item fade-in delay-2">
+                        <div class="stat-number">4.8</div>
+                        <div class="stat-label">Avaliação Média</div>
+                    </div>
+                    
+                    <!-- Estatística 4 -->
+                    <div class="stat-item fade-in delay-3">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Jogos Disponíveis</div>
+                    </div>
+                    
+                    <!-- Estatística 5 -->
+                    <div class="stat-item fade-in delay-4">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Satisfação dos Clientes</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção CTA -->
+        <section class="cta-section fade-in delay-4">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Faça Parte da Nossa História</h2>
+                    <p>Junte-se a milhares de gamers que já descobriram a alegria de nunca mais jogar sozinho. Seja como cliente ou como um de nossos gamers especializados, temos um lugar para você.</p>
+                    <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                        <a href="tela-inicio.html#games" class="btn btn-primary btn-large" style="padding: 18px 40px; font-size: 1.2rem;">Encontrar Amigos</a>
+                        <a href="#" class="btn btn-secondary btn-large" style="padding: 18px 40px; font-size: 1.2rem;">Trabalhe Conosco</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Game<span>Bye</span></div>
+                    <p>Conectamos gamers para criar experiências multiplayer inesquecíveis. Nunca mais jogue sozinho.</p>
+                    <div class="social-icons">
+                        <a href="https://twitter.com/gamebye"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.gg/gamebye"><i class="fab fa-discord"></i></a>
+                        <a href="https://instagram.com/gamebye"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/gamebye"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Páginas</h4>
+                    <ul>
+                        <li><a href="tela-inicio.html">Início</a></li>
+                        <li><a href="tela-inicio.html#games">Jogos</a></li>
+                        <li><a href="como-funciona.html">Como funciona</a></li>
+                        <li><a href="tela-inicio.html">Amigos</a></li>
+                        <li><a href="#" class="active">Sobre nós</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Conta</h4>
+                    <ul>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Criar conta</a></li>
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="#">Histórico</a></li>
+                        <li><a href="#">Configurações</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Termos de uso</a></li>
+                        <li><a href="#">Política de privacidade</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 GameBye. Todos os direitos reservados. | Nunca mais jogue sozinho.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Animações ao rolar
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos para animação
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
