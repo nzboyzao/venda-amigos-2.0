@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sea of Thieves - Escolha seu Amigo | GameBye</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="fotos/favicon site.png" type="image/x-icon">
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00a8ff; /* Azul neon */
+            --secondary-color: #9c27b0; /* Roxo */
+            --accent-color: #4caf50; /* Verde */
+            --dark-bg: #121212; /* Fundo escuro */
+            --darker-bg: #0a0a0a;
+            --light-gray: #f5f5f5;
+            --medium-gray: #b0b0b0;
+            --dark-gray: #333;
+            --card-bg: #1e1e1e;
+            --border-color: #2a2a2a;
+            --shadow-color: rgba(0, 168, 255, 0.1);
+            --transition: all 0.3s ease;
+            --premium-color: #ffd700; /* Dourado para premium */
+            --elite-color: #ff6b6b; /* Vermelho para elite */
+            --sea-color: #00a8ff; /* Azul marinho */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 80px; /* Espaço para o header fixo */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: var(--sea-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0088cc;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--sea-color);
+            border: 2px solid var(--sea-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0, 168, 255, 0.1);
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        .btn-buy {
+            background-color: var(--accent-color);
+            color: white;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            padding: 15px;
+        }
+
+        .btn-buy:hover {
+            background-color: #3d8b40;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(76, 175, 80, 0.2);
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--sea-color);
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--medium-gray);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            color: var(--sea-color);
+            background-color: rgba(0, 168, 255, 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: var(--darker-bg);
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--medium-gray);
+        }
+
+        .breadcrumb-content a {
+            color: var(--medium-gray);
+            transition: var(--transition);
+        }
+
+        .breadcrumb-content a:hover {
+            color: var(--sea-color);
+        }
+
+        .breadcrumb-content i {
+            font-size: 0.8rem;
+        }
+
+        /* Seção de seleção de jogo */
+        .game-selection {
+            margin-bottom: 40px;
+        }
+
+        .game-info-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid var(--sea-color);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, rgba(0, 168, 255, 0.05), transparent);
+        }
+
+        .game-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid var(--sea-color);
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .game-details h2 {
+            margin-bottom: 10px;
+            color: var(--sea-color);
+        }
+
+        .game-price {
+            color: var(--sea-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .game-description {
+            color: var(--medium-gray);
+            max-width: 600px;
+        }
+
+        /* Seção de amigos */
+        .friends-section {
+            background-color: var(--darker-bg);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .section-header h2 {
+            margin-bottom: 0;
+            color: var(--sea-color);
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            color: var(--medium-gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active {
+            background-color: var(--sea-color);
+            color: white;
+            border-color: var(--sea-color);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--sea-color);
+            color: var(--sea-color);
+        }
+
+        /* Grid de amigos */
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .friend-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .friend-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--sea-color);
+        }
+
+        .friend-card.premium {
+            border: 2px solid var(--premium-color);
+        }
+
+        .friend-card.elite {
+            border: 2px solid var(--elite-color);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .badge.premium {
+            background-color: var(--premium-color);
+            color: #000;
+        }
+
+        .badge.elite {
+            background-color: var(--elite-color);
+            color: white;
+        }
+
+        .friend-header {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .friend-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .friend-card:hover .friend-image {
+            transform: scale(1.05);
+        }
+
+        .friend-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            padding-top: 40px;
+        }
+
+        .friend-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .friend-tag {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        .friend-content {
+            padding: 25px;
+        }
+
+        .friend-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--sea-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+        }
+
+        .friend-skills {
+            margin-bottom: 20px;
+        }
+
+        .skills-title {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--medium-gray);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background-color: rgba(0, 168, 255, 0.1);
+            color: var(--sea-color);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+        }
+
+        .friend-pricing {
+            margin-top: 20px;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .price-info {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            margin-bottom: 15px;
+        }
+
+        .total-price {
+            background-color: rgba(76, 175, 80, 0.1);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        .friend-description {
+            font-style: italic;
+            color: var(--light-gray);
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--sea-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 50px 0 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--sea-color);
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: var(--medium-gray);
+            transition: var(--transition);
+            display: inline-block;
+            padding: 5px 0;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--sea-color);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--sea-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+            
+            .game-info-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .friends-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--darker-bg);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            nav ul.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            
+            body {
+                padding-top: 70px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .filter-options {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .friends-section {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+            }
+            
+            .friends-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .game-info-card {
+                padding: 20px;
+            }
+            
+            .friend-header {
+                height: 180px;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+        
+        .delay-5 {
+            animation-delay: 1s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="tela-inicio.html" class="logo">
+                <i class="fas fa-gamepad"></i>
+                Game<span>Bye</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="tela-inicio.html">Início</a></li>
+                    <li><a href="tela-inicio.html#games">Jogos</a></li>
+                    <li><a href="tela-inicio.html">Como funciona</a></li>
+                    <li><a href="#" class="active">Amigos</a></li>
+                    <li><a href="tela-inicio.html">Avaliações</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="tela-inicio.html#games" class="btn btn-primary btn-small">Voltar para Jogos</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container breadcrumb-content">
+            <a href="tela-inicio.html">Início</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="tela-inicio.html#games">Jogos</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Sea of Thieves</span>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <!-- Informações do Jogo -->
+        <section class="game-selection">
+            <div class="game-info-card fade-in">
+                <div class="game-image">
+                    <img src="fotos/sea.jpg" alt="Sea of Thieves">
+                </div>
+                <div class="game-details">
+                    <h2>Sea of Thieves</h2>
+                    <div class="game-price">Taxa do jogo: R$ 29,90 / hora</div>
+                    <p class="game-description">Explore um vasto mundo aberto de aventuras piratas com seus amigos. Navegue por mares perigosos, enfrente outras tripulações e descubra tesouros escondidos.</p>
+                    <p><strong>Nota:</strong> Este valor será somado ao preço do amigo escolhido para formar o valor total por hora.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Amigos Disponíveis -->
+        <section class="friends-section">
+            <div class="section-header">
+                <h2>Escolha seu amigo gamer</h2>
+                <div class="filter-options">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="premium">Premium</button>
+                    <button class="filter-btn" data-filter="elite">Elite</button>
+                    <button class="filter-btn" data-filter="regular">Regular</button>
+                </div>
+            </div>
+
+            <div class="friends-grid">
+                <!-- SMOKE (Premium) -->
+                <div class="friend-card premium fade-in" data-category="premium">
+                    <div class="badge premium">PREMIUM</div>
+                    <div class="friend-header">
+                        <img src="fotos/smoke.jpg" alt="Smoke" class="friend-image" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        <div class="friend-overlay">
+                            <h3 class="friend-name">SMOKE</h3>
+                            <div class="friend-tag">Apelido: Canhão Dourado • @nzboy__</div>
+                        </div>
+                    </div>
+                    <div class="friend-content">
+                        <div class="friend-stats">
+                            <div class="stat">
+                                <div class="stat-value">4.9</div>
+                                <div class="stat-label">Avaliação</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">720+</div>
+                                <div class="stat-label">Horas</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">95%</div>
+                                <div class="stat-label">Vitórias PvP</div>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-skills">
+                            <div class="skills-title">Habilidades no Sea of Thieves:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag">Canhoneiro Expert</span>
+                                <span class="skill-tag">PvP Monstro</span>
+                                <span class="skill-tag">Pilotagem Média</span>
+                                <span class="skill-tag">Resenha 100%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-description">
+                            "XINGAMENTOS CRIATIVOS E APELIDOS ENGRAÇADOS! Smoke não erra um tiro de canhão e ainda te faz rir com as melhores ofensas do mar. Ele vai chamar o navio inimigo de 'Banheira Furada' enquanto afunda eles."
+                        </div>
+                        
+                        <div class="friend-pricing">
+                            <div class="price">R$ 680,00 / hora</div>
+                            <div class="price-info">+ taxa do jogo: R$ 29,90</div>
+                            <div class="total-price">
+                                <strong>Total: R$ 709,90 / hora</strong>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-buy" onclick="selectFriend('SMOKE', 680, 'Sea of Thieves')">Comprar Agora</button>
+                    </div>
+                </div>
+
+                <!-- BYEMMR (Premium) -->
+                <div class="friend-card premium fade-in delay-1" data-category="premium">
+                    <div class="badge premium">PREMIUM</div>
+                    <div class="friend-header">
+                        <img src="fotos/bye.jpg" alt="ByeMMR" class="friend-image" onerror="this.src='https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        <div class="friend-overlay">
+                            <h3 class="friend-name">BYEMMR</h3>
+                            <div class="friend-tag">Apelido: Sal Marinho • @bye_mmr</div>
+                        </div>
+                    </div>
+                    <div class="friend-content">
+                        <div class="friend-stats">
+                            <div class="stat">
+                                <div class="stat-value">4.9</div>
+                                <div class="stat-label">Avaliação</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">900+</div>
+                                <div class="stat-label">Horas</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">99%</div>
+                                <div class="stat-label">Vitórias PvP</div>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-skills">
+                            <div class="skills-title">Habilidades no Sea of Thieves:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag">Canhoneiro Expert</span>
+                                <span class="skill-tag">PvP Monstro</span>
+                                <span class="skill-tag">Pilotagem Média</span>
+                                <span class="skill-tag">Resenha 100%</span>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-description">
+                            "IGUAL AO SMOKE, MAS MAIS CARO! ByeMMR tem o mesmo pacote completo: não erra um tiro, humilha os inimigos com criatividade e ainda inventa apelidos que vão fazer você chorar de rir. 'Olha o Nemo aí!' enquanto afunda um galeão."
+                        </div>
+                        
+                        <div class="friend-pricing">
+                            <div class="price">R$ 720,00 / hora</div>
+                            <div class="price-info">+ taxa do jogo: R$ 29,90</div>
+                            <div class="total-price">
+                                <strong>Total: R$ 749,90 / hora</strong>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-buy" onclick="selectFriend('BYEMMR', 720, 'Sea of Thieves')">Comprar Agora</button>
+                    </div>
+                </div>
+
+                <!-- HARDCORE (Elite) -->
+                <div class="friend-card elite fade-in delay-2" data-category="elite">
+                    <div class="badge elite">ELITE</div>
+                    <div class="friend-header">
+                        <img src="fotos/hard.jpg" alt="Hardcore" class="friend-image" onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        <div class="friend-overlay">
+                            <h3 class="friend-name">HARDCORE</h3>
+                            <div class="friend-tag">Apelido: Marujo Resenha • @hardcore</div>
+                        </div>
+                    </div>
+                    <div class="friend-content">
+                        <div class="friend-stats">
+                            <div class="stat">
+                                <div class="stat-value">4.6</div>
+                                <div class="stat-label">Avaliação</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">500+</div>
+                                <div class="stat-label">Horas</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">70%</div>
+                                <div class="stat-label">Vitórias PvP</div>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-skills">
+                            <div class="skills-title">Habilidades no Sea of Thieves:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag">Pilotagem Média</span>
+                                <span class="skill-tag">PvP Mediano</span>
+                                <span class="skill-tag">Ruim de Canhão</span>
+                                <span class="skill-tag">Resenha Excelente</span>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-description">
+                            "VOCÊ VAI RIR MAIS DO QUE JOGAR! Hardcore é médio em tudo, mas a resenha é impecável. Ele pode errar 10 tiros seguidos, mas a história que ele conta enquanto isso vale o preço. Pilotagem? Meio torta. PvP? Toma uns tiros. Mas a conversa? TOP!"
+                        </div>
+                        
+                        <div class="friend-pricing">
+                            <div class="price">R$ 420,00 / hora</div>
+                            <div class="price-info">+ taxa do jogo: R$ 29,90</div>
+                            <div class="total-price">
+                                <strong>Total: R$ 449,90 / hora</strong>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-buy" onclick="selectFriend('HARDCORE', 420, 'Sea of Thieves')">Comprar Agora</button>
+                    </div>
+                </div>
+
+                <!-- BLACK (Regular) -->
+                <div class="friend-card fade-in delay-3" data-category="regular">
+                    <div class="friend-header">
+                        <img src="fotos/black.jpg" alt="Black" class="friend-image" onerror="this.src='https://images.unsplash.com/photo-1507591064344-4c6ce005-128?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        <div class="friend-overlay">
+                            <h3 class="friend-name">BLACK</h3>
+                            <div class="friend-tag">Apelido: Navio Fantasma • @black</div>
+                        </div>
+                    </div>
+                    <div class="friend-content">
+                        <div class="friend-stats">
+                            <div class="stat">
+                                <div class="stat-value">3.8</div>
+                                <div class="stat-label">Avaliação</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">450+</div>
+                                <div class="stat-label">Horas</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">40%</div>
+                                <div class="stat-label">Vitórias PvP</div>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-skills">
+                            <div class="skills-title">Habilidades no Sea of Thieves:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag">Ruim em Tudo</span>
+                                <span class="skill-tag">PvP Fraco</span>
+                                <span class="skill-tag">Pilotagem Ruim</span>
+                                <span class="skill-tag">Zero Resenha</span>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-description">
+                            "CHATO PRA PORRA E RUIM EM TUDO! Black é aquele amigo que você contrata quando tá duro. Ele não fala, não acerta tiro, bate o navio em tudo, mas pelo menos ele existe. É tipo jogar solo, mas pagando menos. Vale a pena? Eu acho..."
+                        </div>
+                        
+                        <div class="friend-pricing">
+                            <div class="price">R$ 120,00 / hora</div>
+                            <div class="price-info">+ taxa do jogo: R$ 29,90</div>
+                            <div class="total-price">
+                                <strong>Total: R$ 149,90 / hora</strong>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-buy" onclick="selectFriend('BLACK', 120, 'Sea of Thieves')">Comprar Agora</button>
+                    </div>
+                </div>
+
+                <!-- OKAIDA (Regular) -->
+                <div class="friend-card fade-in delay-4" data-category="regular">
+                    <div class="friend-header">
+                        <img src="fotos/okaida.jpg" alt="Okaida" class="friend-image" onerror="this.src='https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        <div class="friend-overlay">
+                            <h3 class="friend-name">OKAIDA</h3>
+                            <div class="friend-tag">Apelido: Pai do Mar • @okaida</div>
+                        </div>
+                    </div>
+                    <div class="friend-content">
+                        <div class="friend-stats">
+                            <div class="stat">
+                                <div class="stat-value">4.5</div>
+                                <div class="stat-label">Avaliação</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">850+</div>
+                                <div class="stat-label">Horas</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">75%</div>
+                                <div class="stat-label">Vitórias PvP</div>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-skills">
+                            <div class="skills-title">Habilidades no Sea of Thieves:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag">Controle de Barco</span>
+                                <span class="skill-tag">PvP Mediano</span>
+                                <span class="skill-tag">Fuga Expert</span>
+                                <span class="skill-tag">Resenha Boa</span>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-description">
+                            "PAI DE FAMÍLIA QUE INVENTA DESCULPAS! Okaida é um bom amigo, controla bem o barco, mas não gosta de fazer fort. 'Ah, meu filho chorando', 'Minha esposa me chamou', 'Prego ir no mercado'. PvP? Mais ou menos. Mas a resenha é boa e ele nunca te deixa na mão... quase nunca."
+                        </div>
+                        
+                        <div class="friend-pricing">
+                            <div class="price">R$ 280,00 / hora</div>
+                            <div class="price-info">+ taxa do jogo: R$ 29,90</div>
+                            <div class="total-price">
+                                <strong>Total: R$ 309,90 / hora</strong>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-buy" onclick="selectFriend('OKAIDA', 280, 'Sea of Thieves')">Comprar Agora</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Informação sobre preços -->
+        <section class="info-section fade-in delay-5">
+            <div class="game-info-card">
+                <div style="text-align: center; width: 100%;">
+                    <h3>Classificação dos Amigos - Sea of Thieves</h3>
+                    <p>Nossos amigos são classificados com base em suas habilidades e personalidade:</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px;">
+                        <div style="background-color: rgba(255, 215, 0, 0.1); padding: 15px; border-radius: 10px; min-width: 200px;">
+                            <h4 style="color: var(--premium-color);">PREMIUM</h4>
+                            <p>Smoke & ByeMMR</p>
+                            <p style="font-size: 0.9rem;">Canhoneiros experts + Resenha 100%</p>
+                        </div>
+                        <div style="background-color: rgba(255, 107, 107, 0.1); padding: 15px; border-radius: 10px; min-width: 200px;">
+                            <h4 style="color: var(--elite-color);">ELITE</h4>
+                            <p>Hardcore</p>
+                            <p style="font-size: 0.9rem;">Resenha excelente, habilidades médias</p>
+                        </div>
+                        <div style="background-color: rgba(0, 168, 255, 0.1); padding: 15px; border-radius: 10px; min-width: 200px;">
+                            <h4 style="color: var(--sea-color);">REGULAR</h4>
+                            <p>Black & Okaida</p>
+                            <p style="font-size: 0.9rem;">Para quando a grana tá curta</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Game<span>Bye</span></div>
+                    <p>Conectamos gamers para criar experiências multiplayer inesquecíveis. Nunca mais jogue sozinho.</p>
+                    <div class="social-icons">
+                        <a href="https://twitter.com/gamebye"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.gg/gamebye"><i class="fab fa-discord"></i></a>
+                        <a href="https://instagram.com/gamebye"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/gamebye"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Páginas</h4>
+                    <ul>
+                        <li><a href="tela-inicio.html">Início</a></li>
+                        <li><a href="tela-inicio.html#games">Jogos</a></li>
+                        <li><a href="tela-inicio.html">Como funciona</a></li>
+                        <li><a href="#" class="active">Amigos</a></li>
+                        <li><a href="tela-inicio.html">Avaliações</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Conta</h4>
+                    <ul>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Criar conta</a></li>
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="#">Histórico</a></li>
+                        <li><a href="#">Configurações</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Termos de uso</a></li>
+                        <li><a href="#">Política de privacidade</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 GameBye. Todos os direitos reservados. | Nunca mais jogue sozinho.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Filtro de amigos
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const friendCards = document.querySelectorAll('.friend-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class de todos os botões
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Adiciona active class no botão clicado
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                // Filtra os cards
+                friendCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        const category = card.getAttribute('data-category');
+                        if (category === filter) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Selecionar amigo
+        function selectFriend(friendName, price, gameName) {
+            const gamePrice = 29.90;
+            const totalPrice = price + gamePrice;
+            
+            const modalHTML = `
+                <div id="selectionModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); z-index:2000; display:flex; justify-content:center; align-items:center;">
+                    <div style="background-color:#1e1e1e; border-radius:15px; padding:40px; max-width:500px; width:90%; border:2px solid #00a8ff;">
+                        <h2 style="color:#00a8ff; margin-bottom:20px;">Confirmar Seleção - Sea of Thieves</h2>
+                        <p>Você selecionou: <strong style="color:white;">${friendName}</strong></p>
+                        <p>Jogo: <strong style="color:#00a8ff;">${gameName}</strong></p>
+                        <div style="background-color:rgba(0, 168, 255, 0.1); padding:15px; border-radius:10px; margin:20px 0;">
+                            <p style="margin-bottom:5px;"><strong>Detalhes do preço:</strong></p>
+                            <p>Amigo: R$ ${price.toFixed(2)} / hora</p>
+                            <p>Taxa do jogo: R$ ${gamePrice.toFixed(2)} / hora</p>
+                            <p style="margin-top:10px; font-size:1.2rem;"><strong>Total: R$ ${totalPrice.toFixed(2)} / hora</strong></p>
+                        </div>
+                        <p style="margin-bottom:25px;">Você será redirecionado para a página de checkout para finalizar a compra.</p>
+                        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                            <button onclick="proceedToCheckout('${friendName}', ${price}, '${gameName}')" style="background-color:#4caf50; color:white; border:none; padding:15px 30px; border-radius:50px; font-weight:600; cursor:pointer; flex:1;">Continuar para Checkout</button>
+                            <button onclick="closeModal()" style="background-color:transparent; color:#00a8ff; border:2px solid #00a8ff; padding:15px 30px; border-radius:50px; font-weight:600; cursor:pointer;">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+        }
+        
+        function proceedToCheckout(friendName, price, gameName) {
+            closeModal();
+            const gamePrice = 29.90;
+            alert(`Redirecionando para checkout...\n\nAmigo: ${friendName}\nJogo: ${gameName}\nPreço: R$ ${price.toFixed(2)}/hora\nTaxa do jogo: R$ ${gamePrice.toFixed(2)}/hora\n\nTotal: R$ ${(price + gamePrice).toFixed(2)}/hora`);
+            // Em um site real: window.location.href = `checkout.html?friend=${encodeURIComponent(friendName)}&game=${encodeURIComponent(gameName)}&price=${price}`;
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('selectionModal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        // Fechar modal com ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Animações ao rolar
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos para animação
+        document.querySelectorAll('.friend-card, .game-info-card, .info-section').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
