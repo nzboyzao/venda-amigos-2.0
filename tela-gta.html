@@ -1,0 +1,1272 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GTA V - Escolha seu Amigo | GameBye</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="fotos/favicon site.png" type="image/x-icon">
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #ff6b00; /* Laranja GTA */
+            --secondary-color: #333333; /* Cinza escuro */
+            --accent-color: #e74c3c; /* Vermelho */
+            --dark-bg: #121212; /* Fundo escuro */
+            --darker-bg: #0a0a0a;
+            --light-gray: #f5f5f5;
+            --medium-gray: #b0b0b0;
+            --dark-gray: #333;
+            --card-bg: #1e1e1e;
+            --border-color: #2a2a2a;
+            --shadow-color: rgba(255, 107, 0, 0.2);
+            --transition: all 0.3s ease;
+            --premium-color: #ffd700; /* Dourado para premium */
+            --elite-color: #3498db; /* Azul para elite */
+            --gta-color: #ff6b00; /* Laranja GTA */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 80px; /* Espaço para o header fixo */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: var(--gta-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #e65c00;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--gta-color);
+            border: 2px solid var(--gta-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 107, 0, 0.1);
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        .btn-buy {
+            background-color: var(--accent-color);
+            color: white;
+            width: 100%;
+            margin-top: 20px;
+            font-size: 1.1rem;
+            padding: 15px;
+        }
+
+        .btn-buy:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(231, 76, 60, 0.2);
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--gta-color);
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--medium-gray);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            color: var(--gta-color);
+            background-color: rgba(255, 107, 0, 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: var(--darker-bg);
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--medium-gray);
+        }
+
+        .breadcrumb-content a {
+            color: var(--medium-gray);
+            transition: var(--transition);
+        }
+
+        .breadcrumb-content a:hover {
+            color: var(--gta-color);
+        }
+
+        .breadcrumb-content i {
+            font-size: 0.8rem;
+        }
+
+        /* Seção de seleção de jogo */
+        .game-selection {
+            margin-bottom: 40px;
+        }
+
+        .game-info-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid var(--gta-color);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            background: linear-gradient(to right, rgba(255, 107, 0, 0.05), transparent);
+        }
+
+        .game-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 2px solid var(--gta-color);
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .game-details h2 {
+            margin-bottom: 10px;
+            color: var(--gta-color);
+        }
+
+        .game-price {
+            color: var(--gta-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .game-description {
+            color: var(--medium-gray);
+            max-width: 600px;
+        }
+
+        /* Seção de amigos */
+        .friends-section {
+            background-color: var(--darker-bg);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 50px;
+            border: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .section-header h2 {
+            margin-bottom: 0;
+            color: var(--gta-color);
+        }
+
+        .filter-options {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            color: var(--medium-gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active {
+            background-color: var(--gta-color);
+            color: white;
+            border-color: var(--gta-color);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--gta-color);
+            color: var(--gta-color);
+        }
+
+        /* Grid de amigos */
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .friend-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .friend-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--gta-color);
+        }
+
+        .friend-card.premium {
+            border: 2px solid var(--premium-color);
+        }
+
+        .friend-card.elite {
+            border: 2px solid var(--elite-color);
+        }
+
+        .badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .badge.premium {
+            background-color: var(--premium-color);
+            color: #000;
+        }
+
+        .badge.elite {
+            background-color: var(--elite-color);
+            color: white;
+        }
+
+        .friend-header {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .friend-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .friend-card:hover .friend-image {
+            transform: scale(1.05);
+        }
+
+        .friend-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            padding-top: 40px;
+        }
+
+        .friend-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .friend-tag {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        .friend-content {
+            padding: 25px;
+        }
+
+        .friend-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gta-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+        }
+
+        .friend-skills {
+            margin-bottom: 20px;
+        }
+
+        .skills-title {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: var(--medium-gray);
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background-color: rgba(255, 107, 0, 0.1);
+            color: var(--gta-color);
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+        }
+
+        .skill-tag.highlight {
+            background-color: rgba(255, 215, 0, 0.2);
+            color: #ffd700;
+        }
+
+        .friend-pricing {
+            margin-top: 20px;
+        }
+
+        .price {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .price-info {
+            font-size: 0.9rem;
+            color: var(--medium-gray);
+            margin-bottom: 15px;
+        }
+
+        .total-price {
+            background-color: rgba(231, 76, 60, 0.1);
+            border-left: 3px solid var(--accent-color);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 50px 0 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--gta-color);
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: var(--medium-gray);
+            transition: var(--transition);
+            display: inline-block;
+            padding: 5px 0;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--gta-color);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--gta-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+            
+            .game-info-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .friends-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--darker-bg);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            nav ul.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            
+            body {
+                padding-top: 70px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .filter-options {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .friends-section {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+            }
+            
+            .friends-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .game-info-card {
+                padding: 20px;
+            }
+            
+            .friend-header {
+                height: 180px;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+        
+        .delay-5 {
+            animation-delay: 1s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="tela-inicio.html" class="logo">
+                <i class="fas fa-gamepad"></i>
+                Game<span>Bye</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="tela-inicio.html">Início</a></li>
+                    <li><a href="tela-inicio.html#games">Jogos</a></li>
+                    <li><a href="tela-inicio.html">Como funciona</a></li>
+                    <li><a href="#" class="active">Amigos</a></li>
+                    <li><a href="tela-inicio.html">Avaliações</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="tela-inicio.html#games" class="btn btn-primary btn-small">Voltar para Jogos</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container breadcrumb-content">
+            <a href="tela-inicio.html">Início</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="tela-inicio.html#games">Jogos</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>GTA V</span>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <!-- Informações do Jogo -->
+        <section class="game-selection">
+            <div class="game-info-card fade-in">
+                <div class="game-image">
+                    <img src="fotos/gta5.jpg" alt="GTA V">
+                </div>
+                <div class="game-details">
+                    <h2>Grand Theft Auto V</h2>
+                    <div class="game-price">Taxa do jogo: R$ 29,90 / hora</div>
+                    <p class="game-description">Explore o vasto mundo de Los Santos e Blaine County em um dos jogos de mundo aberto mais populares. Participe de missões, corridas, atividades e batalhas PVP épicas com nossos amigos especialistas.</p>
+                    <p><strong>Nota:</strong> Este valor será somado ao preço do amigo escolhido para formar o valor total por hora.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Amigos Disponíveis -->
+        <section class="friends-section">
+            <div class="section-header">
+                <h2>Escolha seu amigo gamer</h2>
+                <div class="filter-options">
+                    <button class="filter-btn active" data-filter="all">Todos</button>
+                    <button class="filter-btn" data-filter="premium">Premium</button>
+                    <button class="filter-btn" data-filter="elite">Elite</button>
+                    <button class="filter-btn" data-filter="regular">Regular</button>
+                </div>
+            </div>
+
+            <div class="friends-grid">
+                <!-- Smoke (Premium - Mestre do PVP) -->
+                <div class="friend-card premium fade-in" data-category="premium">
+                    <div class="badge premium">PREMIUM</div>
+                    <div class="friend-header">
+                        <img src="fotos/smoke.jpg" alt="Smoke" class="friend-image" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        <div class="friend-overlay">
+                            <h3 class="friend-name">SMOKE</h3>
+                            <div class="friend-tag">Rei do PVP • Mestre do Jato • @nzboy__</div>
+                        </div>
+                    </div>
+                    <div class="friend-content">
+                        <div class="friend-stats">
+                            <div class="stat">
+                                <div class="stat-value">5.0</div>
+                                <div class="stat-label">Avaliação</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">1800+</div>
+                                <div class="stat-label">Horas</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">100%</div>
+                                <div class="stat-label">PVP</div>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-skills">
+                            <div class="skills-title">Habilidades no GTA V:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag highlight">PVP Master</span>
+                                <span class="skill-tag highlight">Jato Expert</span>
+                                <span class="skill-tag">Combate Aéreo</span>
+                                <span class="skill-tag">Resenha Top</span>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-description">
+                            <p><strong>Descrição:</strong> MESTRE DO PVP! Muito bom, Rei do PVP de jato, muito bom resenha top muito bom (sobe meu ego). Se você quer dominar os céus de Los Santos e humilhar seus inimigos, Smoke é sua escolha.</p>
+                        </div>
+                        
+                        <div class="friend-pricing">
+                            <div class="price">R$ 520,00 / hora</div>
+                            <div class="price-info">+ taxa do jogo: R$ 29,90</div>
+                            <div class="total-price">
+                                <strong>Total: R$ 549,90 / hora</strong>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-buy" onclick="selectFriend('SMOKE', 520, 'GTA V')">Comprar Agora</button>
+                    </div>
+                </div>
+
+                <!-- Bye MMR (Premium - Igual ao Smoke) -->
+                <div class="friend-card premium fade-in delay-1" data-category="premium">
+                    <div class="badge premium">PREMIUM</div>
+                    <div class="friend-header">
+                        <img src="fotos/bye.jpg" alt="Bye MMR" class="friend-image" onerror="this.src='https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        <div class="friend-overlay">
+                            <h3 class="friend-name">BYE MMR</h3>
+                            <div class="friend-tag">Clonagem do Smoke • @bye_mmr</div>
+                        </div>
+                    </div>
+                    <div class="friend-content">
+                        <div class="friend-stats">
+                            <div class="stat">
+                                <div class="stat-value">4.9</div>
+                                <div class="stat-label">Avaliação</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">1700+</div>
+                                <div class="stat-label">Horas</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">98%</div>
+                                <div class="stat-label">PVP</div>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-skills">
+                            <div class="skills-title">Habilidades no GTA V:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag highlight">PVP Master</span>
+                                <span class="skill-tag highlight">Jato Expert</span>
+                                <span class="skill-tag">Combate Terrestre</span>
+                                <span class="skill-tag">Resenha Top</span>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-description">
+                            <p><strong>Descrição:</strong> É A MESMA COISA que o Smoke! Literalmente uma clonagem perfeita. Se o Smoke estiver ocupado ou você quiser testar uma versão alternativa igualmente dominante, Bye MMR é a escolha.</p>
+                        </div>
+                        
+                        <div class="friend-pricing">
+                            <div class="price">R$ 510,00 / hora</div>
+                            <div class="price-info">+ taxa do jogo: R$ 29,90</div>
+                            <div class="total-price">
+                                <strong>Total: R$ 539,90 / hora</strong>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-buy" onclick="selectFriend('BYE MMR', 510, 'GTA V')">Comprar Agora</button>
+                    </div>
+                </div>
+
+                <!-- Okaida (Elite - Bom de PVP, ruim no jato) -->
+                <div class="friend-card elite fade-in delay-2" data-category="elite">
+                    <div class="badge elite">ELITE</div>
+                    <div class="friend-header">
+                        <img src="fotos/okaida.jpg" alt="Okaida" class="friend-image" onerror="this.src='https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        <div class="friend-overlay">
+                            <h3 class="friend-name">OKAIDA</h3>
+                            <div class="friend-tag">PVP Terrestre • @okaida</div>
+                        </div>
+                    </div>
+                    <div class="friend-content">
+                        <div class="friend-stats">
+                            <div class="stat">
+                                <div class="stat-value">4.6</div>
+                                <div class="stat-label">Avaliação</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">1200+</div>
+                                <div class="stat-label">Horas</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">70%</div>
+                                <div class="stat-label">PVP</div>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-skills">
+                            <div class="skills-title">Habilidades no GTA V:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag">PVP Terrestre</span>
+                                <span class="skill-tag">Golpes (GLHTs)</span>
+                                <span class="skill-tag">Missões</span>
+                                <span class="skill-tag">Evita Jatos</span>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-description">
+                            <p><strong>Descrição:</strong> Gosta de fazer golpes (GLHTs), bom de PVP terrestre, mas RUIM no jato. Se você quer dominar o chão e fazer muito dinheiro com golpes, mas não se importa em fugir de jatos, Okaida é perfeito.</p>
+                        </div>
+                        
+                        <div class="friend-pricing">
+                            <div class="price">R$ 380,00 / hora</div>
+                            <div class="price-info">+ taxa do jogo: R$ 29,90</div>
+                            <div class="total-price">
+                                <strong>Total: R$ 409,90 / hora</strong>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-buy" onclick="selectFriend('OKAIDA', 380, 'GTA V')">Comprar Agora</button>
+                    </div>
+                </div>
+
+                <!-- Hard (Elite - Rei do Drift) -->
+                <div class="friend-card elite fade-in delay-3" data-category="elite">
+                    <div class="badge elite">ELITE</div>
+                    <div class="friend-header">
+                        <img src="fotos/hard.jpg" alt="Hard" class="friend-image" onerror="this.src='https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        <div class="friend-overlay">
+                            <h3 class="friend-name">HARD</h3>
+                            <div class="friend-tag">Rei do Drift • @hard</div>
+                        </div>
+                    </div>
+                    <div class="friend-content">
+                        <div class="friend-stats">
+                            <div class="stat">
+                                <div class="stat-value">4.5</div>
+                                <div class="stat-label">Avaliação</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">1400+</div>
+                                <div class="stat-label">Horas</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">80%</div>
+                                <div class="stat-label">Drift</div>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-skills">
+                            <div class="skills-title">Habilidades no GTA V:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag highlight">Drift Master</span>
+                                <span class="skill-tag">PVP Bom</span>
+                                <span class="skill-tag">Corridas</span>
+                                <span class="skill-tag">Cassual</span>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-description">
+                            <p><strong>Descrição:</strong> REI DO DRIFT! Gosta de ser casual, mas NÃO MEXE COM ELE que ele te negativa. Bom de PVP, mas ruim de jato. Perfeito para quem quer dominar as ruas com estilo e dar umas risadas (sem provocar muito).</p>
+                        </div>
+                        
+                        <div class="friend-pricing">
+                            <div class="price">R$ 350,00 / hora</div>
+                            <div class="price-info">+ taxa do jogo: R$ 29,90</div>
+                            <div class="total-price">
+                                <strong>Total: R$ 379,90 / hora</strong>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-buy" onclick="selectFriend('HARD', 350, 'GTA V')">Comprar Agora</button>
+                    </div>
+                </div>
+
+                <!-- Clack (Regular - Lixo) -->
+                <div class="friend-card fade-in delay-4" data-category="regular">
+                    <div class="friend-header">
+                        <img src="fotos/black.jpg" alt="Clack" class="friend-image" onerror="this.src='https://images.unsplash.com/photo-1507591064344-4c6ce005-128?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'">
+                        <div class="friend-overlay">
+                            <h3 class="friend-name">BLACK</h3>
+                            <div class="friend-tag">Iniciante • @black</div>
+                        </div>
+                    </div>
+                    <div class="friend-content">
+                        <div class="friend-stats">
+                            <div class="stat">
+                                <div class="stat-value">2.5</div>
+                                <div class="stat-label">Avaliação</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">300+</div>
+                                <div class="stat-label">Horas</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-value">10%</div>
+                                <div class="stat-label">Habilidade</div>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-skills">
+                            <div class="skills-title">Habilidades no GTA V:</div>
+                            <div class="skills-list">
+                                <span class="skill-tag">Morre Muito</span>
+                                <span class="skill-tag">Perde Corridas</span>
+                                <span class="skill-tag">Chato</span>
+                                <span class="skill-tag">Inútil</span>
+                            </div>
+                        </div>
+                        
+                        <div class="friend-description">
+                            <p><strong>Descrição:</strong> A MESMA COISA do Minecraft: LIXO, ruim e chato. Só escolha se você gosta de carregar peso morto, ouvir reclamações e perder missões. Único ponto positivo: é barato (mas ainda é caro pelo que oferece).</p>
+                        </div>
+                        
+                        <div class="friend-pricing">
+                            <div class="price">R$ 120,00 / hora</div>
+                            <div class="price-info">+ taxa do jogo: R$ 29,90</div>
+                            <div class="total-price">
+                                <strong>Total: R$ 149,90 / hora</strong>
+                            </div>
+                        </div>
+                        
+                        <button class="btn btn-buy" onclick="selectFriend('CLACK', 120, 'GTA V')">Comprar Agora</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Informação sobre preços -->
+        <section class="info-section fade-in delay-5">
+            <div class="game-info-card">
+                <div style="text-align: center; width: 100%;">
+                    <h3>Especialidades no GTA V Online</h3>
+                    <p>No mundo de Los Santos, cada amigo tem suas próprias habilidades únicas:</p>
+                    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px;">
+                        <div style="background-color: rgba(255, 107, 0, 0.1); padding: 15px; border-radius: 10px; min-width: 200px;">
+                            <h4 style="color: var(--gta-color);">Domínio Aéreo</h4>
+                            <p>Smoke & Bye MMR: Mestres do PVP com jatos e combate aéreo</p>
+                        </div>
+                        <div style="background-color: rgba(52, 152, 219, 0.1); padding: 15px; border-radius: 10px; min-width: 200px;">
+                            <h4 style="color: var(--elite-color);">Especialistas Terrestres</h4>
+                            <p>Okaida & Hard: PVP terrestre, golpes e drift mastery</p>
+                        </div>
+                        <div style="background-color: rgba(255, 215, 0, 0.1); padding: 15px; border-radius: 10px; min-width: 200px;">
+                            <h4 style="color: var(--premium-color);">Premium Experience</h4>
+                            <p>Os melhores para dominar Los Santos com estilo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Game<span>Bye</span></div>
+                    <p>Conectamos gamers para criar experiências multiplayer inesquecíveis. Nunca mais jogue sozinho.</p>
+                    <div class="social-icons">
+                        <a href="https://twitter.com/gamebye"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.gg/gamebye"><i class="fab fa-discord"></i></a>
+                        <a href="https://instagram.com/gamebye"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/gamebye"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Páginas</h4>
+                    <ul>
+                        <li><a href="tela-inicio.html">Início</a></li>
+                        <li><a href="tela-inicio.html#games">Jogos</a></li>
+                        <li><a href="tela-inicio.html">Como funciona</a></li>
+                        <li><a href="#" class="active">Amigos</a></li>
+                        <li><a href="tela-inicio.html">Avaliações</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Conta</h4>
+                    <ul>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Criar conta</a></li>
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="#">Histórico</a></li>
+                        <li><a href="#">Configurações</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Termos de uso</a></li>
+                        <li><a href="#">Política de privacidade</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 GameBye. Todos os direitos reservados. | Nunca mais jogue sozinho.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Filtro de amigos
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const friendCards = document.querySelectorAll('.friend-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class de todos os botões
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Adiciona active class no botão clicado
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                // Filtra os cards
+                friendCards.forEach(card => {
+                    if (filter === 'all') {
+                        card.style.display = 'block';
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            card.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        const category = card.getAttribute('data-category');
+                        if (category === filter) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    }
+                });
+            });
+        });
+        
+        // Selecionar amigo
+        function selectFriend(friendName, price, gameName) {
+            const gamePrice = gameName === 'GTA V' ? 29.90 : 24.90;
+            const totalPrice = price + gamePrice;
+            
+            const modalHTML = `
+                <div id="selectionModal" style="position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.8); z-index:2000; display:flex; justify-content:center; align-items:center;">
+                    <div style="background-color:#1e1e1e; border-radius:15px; padding:40px; max-width:500px; width:90%; border:2px solid #ff6b00;">
+                        <h2 style="color:#ff6b00; margin-bottom:20px;">Confirmar Seleção - GTA V</h2>
+                        <p>Você selecionou: <strong style="color:white;">${friendName}</strong></p>
+                        <p>Jogo: <strong style="color:#ff6b00;">${gameName}</strong></p>
+                        <div style="background-color:rgba(255, 107, 0, 0.1); padding:15px; border-radius:10px; margin:20px 0;">
+                            <p style="margin-bottom:5px;"><strong>Detalhes do preço:</strong></p>
+                            <p>Amigo: R$ ${price.toFixed(2)} / hora</p>
+                            <p>Taxa do jogo: R$ ${gamePrice.toFixed(2)} / hora</p>
+                            <p style="margin-top:10px; font-size:1.2rem;"><strong>Total: R$ ${totalPrice.toFixed(2)} / hora</strong></p>
+                        </div>
+                        <p style="margin-bottom:25px;">Você será redirecionado para a página de checkout para finalizar a compra.</p>
+                        <div style="display:flex; gap:15px; flex-wrap:wrap;">
+                            <button onclick="proceedToCheckout('${friendName}', ${price}, '${gameName}')" style="background-color:#e74c3c; color:white; border:none; padding:15px 30px; border-radius:50px; font-weight:600; cursor:pointer; flex:1;">Continuar para Checkout</button>
+                            <button onclick="closeModal()" style="background-color:transparent; color:#ff6b00; border:2px solid #ff6b00; padding:15px 30px; border-radius:50px; font-weight:600; cursor:pointer;">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+        }
+        
+        function proceedToCheckout(friendName, price, gameName) {
+            closeModal();
+            const gamePrice = gameName === 'GTA V' ? 29.90 : 24.90;
+            alert(`Redirecionando para checkout...\n\nAmigo: ${friendName}\nJogo: ${gameName}\nPreço: R$ ${price.toFixed(2)}/hora\nTaxa do jogo: R$ ${gamePrice.toFixed(2)}/hora\n\nTotal: R$ ${(price + gamePrice).toFixed(2)}/hora`);
+            // Em um site real: window.location.href = `checkout.html?friend=${encodeURIComponent(friendName)}&game=${encodeURIComponent(gameName)}&price=${price}`;
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('selectionModal');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        // Fechar modal com ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Animações ao rolar
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos para animação
+        document.querySelectorAll('.friend-card, .game-info-card, .info-section').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
