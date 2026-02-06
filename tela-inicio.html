@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameBye | Nunca mais jogue sozinho</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="fotos/favicon site.png" type="image/x-icon">
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #00a8ff; /* Azul neon */
+            --secondary-color: #9c27b0; /* Roxo */
+            --accent-color: #4caf50; /* Verde */
+            --dark-bg: #121212; /* Fundo escuro */
+            --darker-bg: #0a0a0a;
+            --light-gray: #f5f5f5;
+            --medium-gray: #b0b0b0;
+            --dark-gray: #333;
+            --card-bg: #1e1e1e;
+            --border-color: #2a2a2a;
+            --shadow-color: rgba(0, 168, 255, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #0088cc;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(0, 168, 255, 0.1);
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--medium-gray);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+            background-color: rgba(0, 168, 255, 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 180px 0 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            color: var(--light-gray);
+        }
+
+        /* Seção de Jogos */
+        .games-section {
+            background-color: var(--darker-bg);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .game-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-color);
+        }
+
+        .game-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .game-info {
+            padding: 25px;
+        }
+
+        .game-title {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .game-price {
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .price-info {
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            background-color: rgba(0, 168, 255, 0.1);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .game-card .btn {
+            width: 100%;
+        }
+
+        /* Seção Como Funciona */
+        .how-it-works {
+            background-color: var(--dark-bg);
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* Cards flip */
+        .step-card {
+            height: 300px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .step-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .step-card:hover .step-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .step-front, .step-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .step-front {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .step-back {
+            background-color: var(--primary-color);
+            color: white;
+            transform: rotateY(180deg);
+            border: 1px solid var(--primary-color);
+        }
+
+        .step-back h3 {
+            color: white;
+        }
+
+        .step-back p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(0, 168, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+
+        .step-back .step-icon {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        /* Seção Avaliações */
+        .testimonials {
+            background-color: var(--darker-bg);
+        }
+
+        .testimonials-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .testimonial-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #333;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background-color: var(--primary-color);
+        }
+
+        .testimonial-author h4 {
+            margin-bottom: 5px;
+        }
+
+        .stars {
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        /* Seção Confiança */
+        .trust-section {
+            background-color: var(--dark-bg);
+        }
+
+        .trust-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .trust-item {
+            text-align: center;
+            padding: 30px;
+            border-radius: 15px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+        }
+
+        .trust-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 70px 0 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--primary-color);
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: var(--medium-gray);
+            transition: var(--transition);
+            display: inline-block;
+            padding: 5px 0;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.8rem;
+            }
+            
+            h2 {
+                font-size: 2.2rem;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+            
+            .step-card {
+                height: 280px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--darker-bg);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            nav ul.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            
+            .hero {
+                padding: 150px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .step-card {
+                height: 260px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+            }
+            
+            .hero {
+                padding: 130px 0 60px;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-card {
+                height: 280px;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+
+        /* Ajuste para mobile - desativar flip no touch */
+        @media (hover: none) and (pointer: coarse) {
+            .step-card {
+                height: auto;
+                cursor: default;
+            }
+            
+            .step-card-inner {
+                transform: none !important;
+                height: auto;
+            }
+            
+            .step-front, .step-back {
+                position: relative;
+                height: auto;
+                transform: none;
+                -webkit-backface-visibility: visible;
+                backface-visibility: visible;
+            }
+            
+            .step-back {
+                display: none;
+            }
+            
+            .step-card.active .step-back {
+                display: flex;
+                margin-top: 20px;
+            }
+            
+            .step-card.active .step-front {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="tela-inicio.html" class="logo">
+                <i class="fas fa-gamepad"></i>
+                Game<span>Bye</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="tela-inicio.html">Início</a></li>
+                    <li><a href="jogos.html">Jogos</a></li>
+                    <li><a href="como-funciona.html">Como funciona</a></li>
+                    <li><a href="amigos.html">Amigos</a></li>
+                    <li><a href="avaliacoes.html">Avaliações</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="login.html" class="btn btn-primary btn-small">Escolher amigo agora</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="fade-in">Nunca mais jogue sozinho.</h1>
+            <p class="fade-in delay-1">Escolha seu jogo, encontre um amigo gamer e jogue agora. Conecte-se com jogadores verificados para uma experiência incrível em multiplayer.</p>
+            <a href="#games" class="btn btn-primary fade-in delay-2">Escolher jogo</a>
+        </div>
+    </section>
+
+    <!-- Seção de Jogos -->
+    <section id="games" class="games-section">
+        <div class="container">
+            <h2>Escolha seu jogo</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Selecione um dos jogos populares abaixo para encontrar amigos gamers que jogam o mesmo jogo que você. <strong>O valor do jogo será somado ao preço do amigo escolhido.</strong></p>
+            
+            <div class="games-grid">
+                <!-- Jogo 1 -->
+                <div class="game-card fade-in">
+                    <div class="game-image" style="background-image: url('fotos/sea.jpg');"></div>
+                    <div class="game-info">
+                        <h3 class="game-title">Sea of Thieves</h3>
+                        <div class="game-price">Taxa do jogo: R$ 29,90 / hora</div>
+                        <div class="price-info">Este valor será somado ao preço do amigo escolhido. Você pagará apenas pelas horas jogadas.</div>
+                        <p>Encontre companheiros para suas aventuras piratas neste mundo aberto multiplayer.</p>
+                        <a href="selicionar-jogo.html" class="btn btn-secondary btn-small">Selecionar jogo</a>
+                    </div>
+                </div>
+                
+                <!-- Jogo 2 -->
+                <div class="game-card fade-in delay-1">
+                    <div class="game-image" style="background-image: url('fotos/r6.jpg');"></div>
+                    <div class="game-info">
+                        <h3 class="game-title">Rainbow Six Siege</h3>
+                        <div class="game-price">Taxa do jogo: R$ 39,90 / hora</div>
+                        <div class="price-info">Este valor será somado ao preço do amigo escolhido. Você pagará apenas pelas horas jogadas.</div>
+                        <p>Forme um esquadrão tático com amigos estrategistas para operações de combate.</p>
+                        <a href="tela-r6.html" class="btn btn-secondary btn-small">Selecionar jogo</a>
+                    </div>
+                </div>
+                
+                <!-- Jogo 3 -->
+                <div class="game-card fade-in delay-2">
+                    <div class="game-image" style="background-image: url('fotos/mine.jpg');"></div>
+                    <div class="game-info">
+                        <h3 class="game-title">Minecraft</h3>
+                        <div class="game-price">Taxa do jogo: R$ 24,90 / hora</div>
+                        <div class="price-info">Este valor será somado ao preço do amigo escolhido. Você pagará apenas pelas horas jogadas.</div>
+                        <p>Construa mundos incríveis com amigos criativos em aventuras colaborativas.</p>
+                        <a href="tela-mine.html" class="btn btn-secondary btn-small">Selecionar jogo</a>
+                    </div>
+                </div>
+                
+                <!-- Jogo 4 -->
+                <div class="game-card fade-in delay-3">
+                    <div class="game-image" style="background-image: url('fotos/gta5.jpg');"></div>
+                    <div class="game-info">
+                        <h3 class="game-title">GTA V Online</h3>
+                        <div class="game-price">Taxa do jogo: R$ 34,90 / hora</div>
+                        <div class="price-info">Este valor será somado ao preço do amigo escolhido. Você pagará apenas pelas horas jogadas.</div>
+                        <p>Viva o mundo aberto de Los Santos com amigos para missões e diversão.</p>
+                        <a href="tela-gta.html" class="btn btn-secondary btn-small">Selecionar jogo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Como Funciona -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2>Como funciona</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Em apenas 5 passos simples, você encontra o amigo gamer ideal para jogar online.</p>
+            
+            <div class="steps-container">
+                <div class="step-card fade-in">
+                    <div class="step-card-inner">
+                        <div class="step-front">
+                            <div class="step-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <h3>1. Escolha o jogo</h3>
+                            <p>Selecione o jogo que você quer jogar com um amigo.</p>
+                        </div>
+                        <div class="step-back">
+                            <div class="step-icon">
+                                <i class="fas fa-gamepad"></i>
+                            </div>
+                            <h3>Taxa do jogo</h3>
+                            <p>Cada jogo tem uma taxa por hora que será somada ao valor do amigo escolhido.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card fade-in delay-1">
+                    <div class="step-card-inner">
+                        <div class="step-front">
+                            <div class="step-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>2. Escolha seu amigo</h3>
+                            <p>Veja perfis detalhados e escolha o amigo ideal para sua gameplay.</p>
+                        </div>
+                        <div class="step-back">
+                            <div class="step-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h3>Perfis verificados</h3>
+                            <p>Todos os amigos passam por verificação de identidade e habilidades no jogo.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card fade-in delay-2">
+                    <div class="step-card-inner">
+                        <div class="step-front">
+                            <div class="step-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h3>3. Combine o horário</h3>
+                            <p>Agende o melhor horário para jogar com seu novo amigo.</p>
+                        </div>
+                        <div class="step-back">
+                            <div class="step-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <h3>Flexibilidade total</h3>
+                            <p>Escolha o horário que melhor se encaixa na sua agenda. Disponível 24/7.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card fade-in delay-3">
+                    <div class="step-card-inner">
+                        <div class="step-front">
+                            <div class="step-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <h3>4. Pagamento seguro</h3>
+                            <p>Realize o pagamento de forma rápida e segura.</p>
+                        </div>
+                        <div class="step-back">
+                            <div class="step-icon">
+                                <i class="fas fa-credit-card"></i>
+                            </div>
+                            <h3>Preço transparente</h3>
+                            <p>Você paga apenas pelas horas jogadas. Taxa do jogo + valor do amigo.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card fade-in delay-4">
+                    <div class="step-card-inner">
+                        <div class="step-front">
+                            <div class="step-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3>5. Jogue online</h3>
+                            <p>Conecte-se, jogue e tenha uma experiência multiplayer incrível!</p>
+                        </div>
+                        <div class="step-back">
+                            <div class="step-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3>Suporte durante o jogo</h3>
+                            <p>Nosso suporte está disponível durante toda sua sessão de jogo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Avaliações -->
+    <section class="testimonials">
+        <div class="container">
+            <h2>O que nossos jogadores dizem</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Avaliações reais de gamers que encontraram amigos incríveis em nossa plataforma.</p>
+            
+            <div class="testimonials-container">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-author">
+                            <h4>Carlos Silva</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Encontrei um grupo incrível para jogar Sea of Thieves. A plataforma é segura e os jogadores são muito respeitosos. Recomendo!"</p>
+                    <a href="avaliacoes.html#carlos" class="btn btn-secondary btn-small" style="margin-top: 15px;">Ver perfil completo</a>
+                </div>
+                
+                <div class="testimonial-card fade-in delay-1">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-author">
+                            <h4>Ana Costa</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Finalmente posso jogar Minecraft com pessoas que realmente sabem construir! A experiência foi perfeita e já marquei mais sessões."</p>
+                    <a href="avaliacoes.html#ana" class="btn btn-secondary btn-small" style="margin-top: 15px;">Ver perfil completo</a>
+                </div>
+                
+                <div class="testimonial-card fade-in delay-2">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="testimonial-author">
+                            <h4>Rafael Santos</h4>
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p>"Como jogador competitivo de Rainbow Six, encontrei um duo perfeito na plataforma. Melhoramos nosso ranking juntos!"</p>
+                    <a href="avaliacoes.html#rafael" class="btn btn-secondary btn-small" style="margin-top: 15px;">Ver perfil completo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Confiança -->
+    <section class="trust-section">
+        <div class="container">
+            <h2>Confiança e segurança</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 20px;">Nossa prioridade é oferecer uma experiência segura e confiável para todos os gamers.</p>
+            
+            <div class="trust-container">
+                <div class="trust-item fade-in">
+                    <div class="trust-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Pagamento seguro</h3>
+                    <p>Transações protegidas com criptografia de última geração.</p>
+                    <a href="pagamento-seguro.html" class="btn btn-secondary btn-small" style="margin-top: 15px;">Saiba mais</a>
+                </div>
+                
+                <div class="trust-item fade-in delay-1">
+                    <div class="trust-icon">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <h3>Perfis verificados</h3>
+                    <p>Todos os amigos gamers passam por um processo de verificação.</p>
+                    <a href="perfis-verificados.html" class="btn btn-secondary btn-small" style="margin-top: 15px;">Saiba mais</a>
+                </div>
+                
+                <div class="trust-item fade-in delay-2">
+                    <div class="trust-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Suporte 24h</h3>
+                    <p>Equipe disponível a qualquer momento para ajudar com qualquer questão.</p>
+                    <a href="suporte.html" class="btn btn-secondary btn-small" style="margin-top: 15px;">Fale conosco</a>
+                </div>
+                
+                <div class="trust-item fade-in delay-3">
+                    <div class="trust-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Plataforma segura</h3>
+                    <p>Seus dados estão protegidos com as mais avançadas medidas de segurança.</p>
+                    <a href="seguranca.html" class="btn btn-secondary btn-small" style="margin-top: 15px;">Saiba mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Game<span>Bye</span></div>
+                    <p>Conectamos gamers para criar experiências multiplayer inesquecíveis. Nunca mais jogue sozinho.</p>
+                    <div class="social-icons">
+                        <a href="https://twitter.com/gamebye"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.gg/gamebye"><i class="fab fa-discord"></i></a>
+                        <a href="https://instagram.com/gamebye"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/gamebye"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Páginas</h4>
+                    <ul>
+                        <li><a href="tela-inicio.html">Início</a></li>
+                        <li><a href="jogos.html">Jogos</a></li>
+                        <li><a href="como-funciona.html">Como funciona</a></li>
+                        <li><a href="amigos.html">Amigos</a></li>
+                        <li><a href="avaliacoes.html">Avaliações</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Conta</h4>
+                    <ul>
+                        <li><a href="tela-inicio.html">Login</a></li>
+                        <li><a href="criar-conta.html">Criar conta</a></li>
+                        <li><a href="perfil.html">Perfil</a></li>
+                        <li><a href="historico.html">Histórico</a></li>
+                        <li><a href="configuracoes.html">Configurações</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="termos.html">Termos de uso</a></li>
+                        <li><a href="privacidade.html">Política de privacidade</a></li>
+                        <li><a href="cookies.html">Cookies</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="contato.html">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 GameBye. Todos os direitos reservados. | Nunca mais jogue sozinho.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Para dispositivos móveis - alternar cards do "Como funciona" no touch
+        if ('ontouchstart' in window || navigator.maxTouchPoints) {
+            document.querySelectorAll('.step-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                });
+            });
+        }
+        
+        // Animação de elementos ao rolar
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos para animação
+        document.querySelectorAll('.game-card, .step-card, .testimonial-card, .trust-item').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
