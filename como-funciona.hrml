@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Funciona | GameBye</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="fotos/favicon site.png" type="image/x-icon">
+    <style>
+        /* Reset e estilos gerais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #5bc95d; /* Verde GameBye */
+            --secondary-color: #9d6b53; /* Marrom madeira */
+            --accent-color: #4caf50; /* Verde */
+            --dark-bg: #121212; /* Fundo escuro */
+            --darker-bg: #0a0a0a;
+            --light-gray: #f5f5f5;
+            --medium-gray: #b0b0b0;
+            --dark-gray: #333;
+            --card-bg: #1e1e1e;
+            --border-color: #2a2a2a;
+            --shadow-color: rgba(91, 201, 93, 0.2);
+            --transition: all 0.3s ease;
+            --premium-color: #ffd700; /* Dourado para premium */
+            --elite-color: #64b5f6; /* Azul para elite */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 80px; /* Espaço para o header fixo */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 60px 0;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #4ba84d;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px var(--shadow-color);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(91, 201, 93, 0.1);
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Header */
+        header {
+            background-color: rgba(18, 18, 18, 0.95);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .logo span {
+            color: var(--primary-color);
+        }
+
+        .logo i {
+            font-size: 2rem;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: var(--medium-gray);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary-color);
+            background-color: rgba(91, 201, 93, 0.1);
+        }
+
+        nav ul li a.active {
+            color: var(--primary-color);
+            background-color: rgba(91, 201, 93, 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: var(--darker-bg);
+            padding: 20px 0;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .breadcrumb-content {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--medium-gray);
+        }
+
+        .breadcrumb-content a {
+            color: var(--medium-gray);
+            transition: var(--transition);
+        }
+
+        .breadcrumb-content a:hover {
+            color: var(--primary-color);
+        }
+
+        .breadcrumb-content i {
+            font-size: 0.8rem;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.9)), url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 100px 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 60px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--light-gray);
+            margin-bottom: 30px;
+        }
+
+        /* Seção de Passos */
+        .steps-section {
+            padding: 80px 0;
+            background-color: var(--darker-bg);
+            border-radius: 15px;
+            margin-bottom: 60px;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .step-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary-color);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h3 {
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .step-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        /* Seção de Vantagens */
+        .benefits-section {
+            margin-bottom: 60px;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .benefit-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .benefit-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(91, 201, 93, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        .benefit-card h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        /* Seção de Planos */
+        .plans-section {
+            background-color: var(--darker-bg);
+            border-radius: 15px;
+            padding: 80px 0;
+            margin-bottom: 60px;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .plan-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .plan-card.popular {
+            border: 2px solid var(--primary-color);
+            transform: scale(1.05);
+        }
+
+        .plan-card.popular:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+
+        .plan-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .plan-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .plan-card h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            color: var(--medium-gray);
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .plan-features li {
+            padding: 8px 0;
+            color: var(--medium-gray);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-features li i {
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
+        /* Seção FAQ */
+        .faq-section {
+            margin-bottom: 60px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: rgba(91, 201, 93, 0.05);
+        }
+
+        .faq-question h3 {
+            margin-bottom: 0;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .faq-icon {
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Seção CTA */
+        .cta-section {
+            background: linear-gradient(rgba(91, 201, 93, 0.1), rgba(91, 201, 93, 0.05));
+            border-radius: 15px;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+            border: 1px solid rgba(91, 201, 93, 0.2);
+        }
+
+        .cta-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--darker-bg);
+            padding: 50px 0 30px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo span {
+            color: var(--primary-color);
+        }
+
+        .footer-links h4 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul li a {
+            color: var(--medium-gray);
+            transition: var(--transition);
+            display: inline-block;
+            padding: 5px 0;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: var(--card-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--medium-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .plan-card.popular {
+                transform: scale(1);
+            }
+            
+            .plan-card.popular:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background-color: var(--darker-bg);
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                gap: 0;
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: var(--transition);
+                border-bottom: 1px solid var(--border-color);
+            }
+            
+            nav ul.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            
+            nav ul li {
+                width: 100%;
+                text-align: center;
+                padding: 15px 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            
+            body {
+                padding-top: 70px;
+            }
+            
+            .hero-section {
+                padding: 60px 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .steps-container,
+            .benefits-grid,
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-card,
+            .benefit-card,
+            .plan-card {
+                padding: 25px 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Animações */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+        
+        .delay-4 {
+            animation-delay: 0.8s;
+        }
+        
+        .delay-5 {
+            animation-delay: 1s;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <a href="tela-inicio.html" class="logo">
+                <i class="fas fa-gamepad"></i>
+                Game<span>Bye</span>
+            </a>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="tela-inicio.html">Início</a></li>
+                    <li><a href="tela-inicio.html#games">Jogos</a></li>
+                    <li><a href="#" class="active">Como funciona</a></li>
+                    <li><a href="tela-inicio.html">Amigos</a></li>
+                    <li><a href="tela-inicio.html">Avaliações</a></li>
+                    <li><a href="#">Login</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="tela-inicio.html#games" class="btn btn-primary btn-small">Ver Jogos</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container breadcrumb-content">
+            <a href="tela-inicio.html">Início</a>
+            <i class="fas fa-chevron-right"></i>
+            <span>Como funciona</span>
+        </div>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero-section fade-in">
+            <div class="hero-content">
+                <h1>Nunca mais jogue sozinho</h1>
+                <p>Conecte-se com gamers experientes e torne cada partida uma experiência incrível. Descubra como é fácil encontrar o parceiro perfeito para qualquer jogo.</p>
+                <a href="tela-inicio.html#games" class="btn btn-primary">Começar Agora</a>
+            </div>
+        </section>
+
+        <!-- Seção de Passos -->
+        <section class="steps-section">
+            <div class="container">
+                <h2 class="text-center fade-in">Como funciona em 4 passos simples</h2>
+                <p class="text-center" style="max-width: 600px; margin: 0 auto 50px;">Do cadastro à diversão, todo o processo foi pensado para ser rápido e fácil</p>
+                
+                <div class="steps-container">
+                    <!-- Passo 1 -->
+                    <div class="step-card fade-in">
+                        <div class="step-number">1</div>
+                        <div class="step-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3>Escolha seu jogo</h3>
+                        <p>Selecione entre nossa variedade de jogos populares: Minecraft, GTA V, Fortnite, Valorant e muitos outros.</p>
+                    </div>
+                    
+                    <!-- Passo 2 -->
+                    <div class="step-card fade-in delay-1">
+                        <div class="step-number">2</div>
+                        <div class="step-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3>Encontre seu amigo</h3>
+                        <p>Navegue pelos perfis de gamers especializados, cada um com habilidades, avaliações e preços específicos.</p>
+                    </div>
+                    
+                    <!-- Passo 3 -->
+                    <div class="step-card fade-in delay-2">
+                        <div class="step-number">3</div>
+                        <div class="step-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3>Faça sua reserva</h3>
+                        <p>Selecione o tempo de jogo, escolha sua forma de pagamento e confirme a reserva de forma segura.</p>
+                    </div>
+                    
+                    <!-- Passo 4 -->
+                    <div class="step-card fade-in delay-3">
+                        <div class="step-number">4</div>
+                        <div class="step-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Conecte-se e jogue</h3>
+                        <p>Receba os detalhes de conexão, entre no Discord ou plataforma escolhida e comece a jogar!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Vantagens -->
+        <section class="benefits-section">
+            <div class="container">
+                <h2 class="text-center fade-in">Por que escolher o GameBye?</h2>
+                <p class="text-center" style="max-width: 600px; margin: 0 auto 50px;">Tudo o que você precisa para transformar sua experiência de jogo</p>
+                
+                <div class="benefits-grid">
+                    <!-- Vantagem 1 -->
+                    <div class="benefit-card fade-in">
+                        <div class="benefit-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Segurança Garantida</h3>
+                        <p>Todos os nossos gamers passam por verificação rigorosa. Sistema de avaliações e suporte 24/7 para qualquer problema.</p>
+                    </div>
+                    
+                    <!-- Vantagem 2 -->
+                    <div class="benefit-card fade-in delay-1">
+                        <div class="benefit-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Conexão Imediata</h3>
+                        <p>Encontre e conecte-se com seu parceiro de jogo em minutos. Sem espera, sem complicação.</p>
+                    </div>
+                    
+                    <!-- Vantagem 3 -->
+                    <div class="benefit-card fade-in delay-2">
+                        <div class="benefit-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h3>Gamers Especializados</h3>
+                        <p>Escolha entre experts em PVP, construção, estratégia ou simplesmente bons companheiros de resenha.</p>
+                    </div>
+                    
+                    <!-- Vantagem 4 -->
+                    <div class="benefit-card fade-in delay-3">
+                        <div class="benefit-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h3>Preços Transparentes</h3>
+                        <p>Cobrança por hora jogada, sem mensalidades ou taxas escondidas. Você paga apenas pelo tempo que usar.</p>
+                    </div>
+                    
+                    <!-- Vantagem 5 -->
+                    <div class="benefit-card fade-in delay-4">
+                        <div class="benefit-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>Melhoria de Habilidades</h3>
+                        <p>Aprenda com os melhores! Nossos gamers podem te ensinar estratégias, builds e técnicas avançadas.</p>
+                    </div>
+                    
+                    <!-- Vantagem 6 -->
+                    <div class="benefit-card fade-in delay-5">
+                        <div class="benefit-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>Flexibilidade Total</h3>
+                        <p>Jogue quando quiser, pelo tempo que quiser. Reservas disponíveis 24 horas por dia, 7 dias por semana.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção de Planos -->
+        <section class="plans-section">
+            <div class="container">
+                <h2 class="text-center fade-in">Planos que se adaptam a você</h2>
+                <p class="text-center" style="max-width: 600px; margin: 0 auto 50px;">Escolha a opção que melhor atende suas necessidades de jogo</p>
+                
+                <div class="plans-grid">
+                    <!-- Plano Básico -->
+                    <div class="plan-card fade-in">
+                        <div class="plan-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <h3>Plano Casual</h3>
+                        <div class="plan-price">R$ <span>/hora variável</span></div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Acesso a todos os jogos</li>
+                            <li><i class="fas fa-check"></i> Gamers Regular</li>
+                            <li><i class="fas fa-check"></i> Suporte básico</li>
+                            <li><i class="fas fa-check"></i> Reservas por hora</li>
+                            <li><i class="fas fa-times"></i> Gamers Premium</li>
+                            <li><i class="fas fa-times"></i> Prioridade em reservas</li>
+                        </ul>
+                        <a href="tela-inicio.html#games" class="btn btn-secondary">Começar agora</a>
+                    </div>
+                    
+                    <!-- Plano Premium -->
+                    <div class="plan-card popular fade-in delay-1">
+                        <div class="plan-badge">MAIS POPULAR</div>
+                        <div class="plan-icon">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <h3>Plano Premium</h3>
+                        <div class="plan-price">R$ <span>/hora variável</span></div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Tudo do Plano Casual</li>
+                            <li><i class="fas fa-check"></i> Acesso a Gamers Premium</li>
+                            <li><i class="fas fa-check"></i> Suporte prioritário 24/7</li>
+                            <li><i class="fas fa-check"></i> Reservas por hora</li>
+                            <li><i class="fas fa-check"></i> Desconto de 10%</li>
+                            <li><i class="fas fa-check"></i> Prioridade em reservas</li>
+                        </ul>
+                        <a href="tela-inicio.html#games" class="btn btn-primary">Escolher Premium</a>
+                    </div>
+                    
+                    <!-- Plano Elite -->
+                    <div class="plan-card fade-in delay-2">
+                        <div class="plan-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <h3>Plano Elite</h3>
+                        <div class="plan-price">R$ <span>/hora variável</span></div>
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Tudo do Plano Premium</li>
+                            <li><i class="fas fa-check"></i> Acesso a Gamers Elite</li>
+                            <li><i class="fas fa-check"></i> Suporte VIP 24/7</li>
+                            <li><i class="fas fa-check"></i> Desconto de 20%</li>
+                            <li><i class="fas fa-check"></i> Reservas garantidas</li>
+                            <li><i class="fas fa-check"></i> Mentorias exclusivas</li>
+                        </ul>
+                        <a href="tela-inicio.html#games" class="btn btn-secondary">Escolher Elite</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção FAQ -->
+        <section class="faq-section">
+            <div class="container">
+                <h2 class="text-center fade-in">Perguntas frequentes</h2>
+                <p class="text-center" style="max-width: 600px; margin: 0 auto 50px;">Tire suas dúvidas sobre como funciona o GameBye</p>
+                
+                <div class="faq-container">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item fade-in">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Como funciona o pagamento?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>O pagamento é feito por hora jogada. Você seleciona o amigo gamer, escolhe quantas horas quer jogar e realiza o pagamento de forma segura via cartão de crédito, Pix ou PayPal. A cobrança é feita apenas pelo tempo efetivamente jogado.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 2 -->
+                    <div class="faq-item fade-in delay-1">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Posso cancelar ou reagendar uma reserva?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim! Você pode cancelar ou reagendar sua reserva até 2 horas antes do horário agendado sem nenhuma taxa. Após esse período, pode haver uma pequena taxa de cancelamento dependendo do plano escolhido.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 3 -->
+                    <div class="faq-item fade-in delay-2">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Como é feita a conexão com o gamer?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Após confirmar a reserva, você receberá um link para um servidor Discord privado ou as credenciais para a plataforma escolhida. Nossa equipe garante que a conexão seja estabelecida de forma rápida e segura.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 4 -->
+                    <div class="faq-item fade-in delay-3">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>E se eu não gostar do gamer escolhido?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Temos uma política de satisfação garantida. Se nas primeiras 30 minutos você não estiver satisfeito, podemos realocar você com outro gamer sem custo adicional ou reembolsar o valor pago.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 5 -->
+                    <div class="faq-item fade-in delay-4">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <h3>Os gamers são verificados?</h3>
+                            <i class="fas fa-chevron-down faq-icon"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Sim! Todos os gamers passam por um rigoroso processo de verificação que inclui análise de histórico, entrevistas e períodos de teste. Além disso, nosso sistema de avaliações garante transparência e qualidade.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção CTA -->
+        <section class="cta-section fade-in delay-5">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Pronto para transformar sua experiência de jogo?</h2>
+                    <p>Junte-se a milhares de gamers que já descobriram a alegria de nunca mais jogar sozinho. Encontre seu parceiro perfeito hoje mesmo!</p>
+                    <a href="tela-inicio.html#games" class="btn btn-primary btn-large" style="padding: 18px 40px; font-size: 1.2rem;">Encontrar Amigos Agora</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">Game<span>Bye</span></div>
+                    <p>Conectamos gamers para criar experiências multiplayer inesquecíveis. Nunca mais jogue sozinho.</p>
+                    <div class="social-icons">
+                        <a href="https://twitter.com/gamebye"><i class="fab fa-twitter"></i></a>
+                        <a href="https://discord.gg/gamebye"><i class="fab fa-discord"></i></a>
+                        <a href="https://instagram.com/gamebye"><i class="fab fa-instagram"></i></a>
+                        <a href="https://youtube.com/gamebye"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Páginas</h4>
+                    <ul>
+                        <li><a href="tela-inicio.html">Início</a></li>
+                        <li><a href="tela-inicio.html#games">Jogos</a></li>
+                        <li><a href="#" class="active">Como funciona</a></li>
+                        <li><a href="tela-inicio.html">Amigos</a></li>
+                        <li><a href="tela-inicio.html">Avaliações</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Conta</h4>
+                    <ul>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Criar conta</a></li>
+                        <li><a href="#">Perfil</a></li>
+                        <li><a href="#">Histórico</a></li>
+                        <li><a href="#">Configurações</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Termos de uso</a></li>
+                        <li><a href="#">Política de privacidade</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 GameBye. Todos os direitos reservados. | Nunca mais jogue sozinho.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // FAQ toggle
+        function toggleFAQ(element) {
+            const faqItem = element.parentElement;
+            faqItem.classList.toggle('active');
+        }
+        
+        // Animações ao rolar
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // Observar elementos para animação
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
